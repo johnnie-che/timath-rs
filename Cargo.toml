@@ -1,0 +1,16 @@
+[package]
+name = "timath"
+version = "0.1.0"
+authors = ["Eugene Cherkasov <eugene.v.cherkasov@gmail.com>"]
+license = "MIT"
+description = "Tiny math library for 2D computer graphics."
+
+repository = "https://github.com/johnnie-che/timath-rs"
+readme = "README.md"
+
+keywords = [ "gamedev", "math" ]
+
+[lib]
+name = "timath"
+
+[dependencies]
