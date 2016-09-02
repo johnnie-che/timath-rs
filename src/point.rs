@@ -7,7 +7,7 @@
 //! For now implemented for 2-dimensional space only.
 
 use std::ops::{Add, Sub};
-use structs::Number;
+use Number;
 
 /// A point in 2-dimensional space
 #[derive(PartialEq, Eq, Clone, Copy, Hash, Debug)]
@@ -35,7 +35,7 @@ impl<T> Sub for Point2<T> where T: Number, <T as Sub>::Output: Number {
 
 #[cfg(test)]
 mod tests {
-    use structs::point::*;
+    use point::*;
 
     const POINT_1: Point2<u32> = Point2{ x: 10, y: 20 };
     const POINT_2: Point2<u32> = Point2{ x: 20, y: 20 };
@@ -53,7 +53,7 @@ mod tests {
 
     #[test]
     fn test_ops() {
-        let pAdd = Point2{ x: POINT_1.x + POINT_2.x, y: POINT_1.y + POINT_2.y };
-        assert_eq!(p, POINT_1 + POINT_2);
+        let p_add = Point2{ x: POINT_1.x + POINT_2.x, y: POINT_1.y + POINT_2.y };
+        assert_eq!(p_add, POINT_1 + POINT_2);
     }
 }
