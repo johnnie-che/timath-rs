@@ -7,7 +7,9 @@
 //!
 
 pub mod point;
+pub mod vector;
 pub mod number;
 
 pub use self::point::Point2;
+pub use self::vector::Vector2;
 pub use self::number::Number;
