@@ -6,7 +6,7 @@
 //! Point contains coordinates only. Supports basic math operations.
 //! For now implemented for 2-dimensional space only.
 
-use std::ops::{Add, Sub};
+use std::ops::{Add, Sub, Mul};
 use Number;
 
 /// A point in 2-dimensional space
@@ -32,6 +32,14 @@ impl<T> Sub for Point2<T> where T: Number, <T as Sub>::Output: Number {
     }
 }
 
+impl<T> Mul<T> for Point2<T> where T: Number, <T as Mul>::Output: Number {
+    type Output = Point2<<T as Mul>::Output>;
+
+    fn mul(self, rhs: T) -> Point2<<T as Mul>::Output> {
+        Point2 { x: self.x * rhs, y: self.y * rhs }
+    }
+}
+
 
 #[cfg(test)]
 mod tests {
@@ -39,6 +47,8 @@ mod tests {
 
     const POINT_1: Point2<f32> = Point2{ x: 10.0, y: 20.0 };
     const POINT_2: Point2<f32> = Point2{ x: 20.0, y: 20.0 };
+
+    const SCALE: f32 = 2.0;
 
     #[test]
     fn test_equal() {
@@ -55,7 +65,9 @@ mod tests {
     fn test_ops() {
         let p_add = Point2 { x: POINT_1.x + POINT_2.x, y: POINT_1.y + POINT_2.y };
         let p_sub = Point2 { x: POINT_1.x - POINT_2.x, y: POINT_1.y - POINT_2.y };
+        let p_mul = Point2 { x: POINT_1.x * SCALE, y: POINT_1.y * SCALE };
         assert_eq!(p_add, POINT_1 + POINT_2);
         assert_eq!(p_sub, POINT_1 - POINT_2);
+        assert_eq!(p_mul, POINT_1 * SCALE);
     }
 }

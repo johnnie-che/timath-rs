@@ -3,9 +3,9 @@
 // Copyright (c) 2014-2016 stage team. All rights reserved.
 //
 
-use std::ops::{Add, Sub};
+use std::ops::{Add, Sub, Mul};
 
-pub trait Number: Add + Sub + Copy + Clone { }
+pub trait Number: Add + Sub + Mul + Copy + Clone { }
 
 impl Number for f32 { }
 impl Number for f64 { }
