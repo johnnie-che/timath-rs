@@ -37,8 +37,8 @@ impl<T> Sub for Point2<T> where T: Number, <T as Sub>::Output: Number {
 mod tests {
     use point::*;
 
-    const POINT_1: Point2<u32> = Point2{ x: 10, y: 20 };
-    const POINT_2: Point2<u32> = Point2{ x: 20, y: 20 };
+    const POINT_1: Point2<f32> = Point2{ x: 10.0, y: 20.0 };
+    const POINT_2: Point2<f32> = Point2{ x: 20.0, y: 20.0 };
 
     #[test]
     fn test_equal() {
@@ -53,7 +53,9 @@ mod tests {
 
     #[test]
     fn test_ops() {
-        let p_add = Point2{ x: POINT_1.x + POINT_2.x, y: POINT_1.y + POINT_2.y };
+        let p_add = Point2 { x: POINT_1.x + POINT_2.x, y: POINT_1.y + POINT_2.y };
+        let p_sub = Point2 { x: POINT_1.x - POINT_2.x, y: POINT_1.y - POINT_2.y };
         assert_eq!(p_add, POINT_1 + POINT_2);
+        assert_eq!(p_sub, POINT_1 - POINT_2);
     }
 }
