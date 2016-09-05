@@ -8,6 +8,7 @@
 
 use std::ops::{Add, Sub, Mul};
 use Number;
+use Float;
 
 #[derive(PartialEq, Eq, Clone, Copy, Hash, Debug)]
 pub struct Vector2<T: Number> {
@@ -39,10 +40,10 @@ impl<T> Mul<T> for Vector2<T> where T: Number, <T as Mul>::Output: Number {
     }
 }
 
-impl<T> Vector2<T> where T: Number {
-    fn magnitude(self) -> f32 {
-        let sum: f32 = self.x * self.x + self.y * self.y;
-        sum.sqrt()
+impl<T> Vector2<T> where T: Number, T: Float {
+    fn magnitude(self) -> T {
+        let sum = self.x * self.x + self.y * self.y;
+        Float::sqrt(sum)
     }
 }
 
@@ -75,8 +76,8 @@ mod tests {
 
     #[test]
     fn test_magnitude() {
-        const MAGNITUDE: f32 = (500.0_f32).sqrt();
+        let magnitude: f32 = (500.0_f32).sqrt();
 
-        assert_eq!(MAGNITUDE, VECTOR_1.magnitude());
+        assert_eq!(magnitude, VECTOR_1.magnitude());
     }
 }
