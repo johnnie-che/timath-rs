@@ -16,7 +16,9 @@ pub struct Vector2<T: Number> {
     pub y: T,
 }
 
-impl<T> Add for Vector2<T> where T: Number, <T as Add>::Output: Number {
+impl<T> Add for Vector2<T>
+    where T: Number,
+          <T as Add>::Output: Number {
     type Output = Vector2<<T as Add>::Output>;
 
     fn add(self, rhs: Vector2<T>) -> Vector2<<T as Add>::Output> {
@@ -24,7 +26,9 @@ impl<T> Add for Vector2<T> where T: Number, <T as Add>::Output: Number {
     }
 }
 
-impl<T> Sub for Vector2<T> where T: Number, <T as Sub>::Output: Number {
+impl<T> Sub for Vector2<T>
+    where T: Number,
+          <T as Sub>::Output: Number {
     type Output = Vector2<<T as Sub>::Output>;
 
     fn sub(self, rhs: Vector2<T>) -> Vector2<<T as Sub>::Output> {
@@ -32,7 +36,9 @@ impl<T> Sub for Vector2<T> where T: Number, <T as Sub>::Output: Number {
     }
 }
 
-impl<T> Mul<T> for Vector2<T> where T: Number, <T as Mul>::Output: Number {
+impl<T> Mul<T> for Vector2<T>
+    where T: Number,
+          <T as Mul>::Output: Number {
     type Output = Vector2<<T as Mul>::Output>;
 
     fn mul(self, rhs: T) -> Vector2<<T as Mul>::Output> {
@@ -40,7 +46,9 @@ impl<T> Mul<T> for Vector2<T> where T: Number, <T as Mul>::Output: Number {
     }
 }
 
-impl<T> Vector2<T> where T: Number, T: Float {
+impl<T> Vector2<T>
+    where T: Number,
+          T: Float {
     fn magnitude(self) -> T {
         let sum = self.x * self.x + self.y * self.y;
         Float::sqrt(sum)
@@ -60,8 +68,8 @@ mod tests {
     #[test]
     fn test_equal() {
         let vec = VECTOR_1;
-        assert_eq!( VECTOR_1 == VECTOR_2, false );
-        assert_eq!( VECTOR_1 == vec, true );
+        assert_eq!(VECTOR_1 == VECTOR_2, false);
+        assert_eq!(VECTOR_1 == vec, true);
     }
 
     #[test]

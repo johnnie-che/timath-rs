@@ -13,10 +13,12 @@ use Number;
 #[derive(PartialEq, Eq, Clone, Copy, Hash, Debug)]
 pub struct Point2<T: Number> {
     pub x: T,
-    pub y: T
+    pub y: T,
 }
 
-impl<T> Add for Point2<T> where T: Number, <T as Add>::Output: Number {
+impl<T> Add for Point2<T>
+    where T: Number,
+          <T as Add>::Output: Number {
     type Output = Point2<<T as Add>::Output>;
 
     fn add(self, rhs: Point2<T>) -> Point2<<T as Add>::Output> {
@@ -24,7 +26,9 @@ impl<T> Add for Point2<T> where T: Number, <T as Add>::Output: Number {
     }
 }
 
-impl<T> Sub for Point2<T> where T: Number, <T as Sub>::Output: Number {
+impl<T> Sub for Point2<T>
+    where T: Number,
+          <T as Sub>::Output: Number {
     type Output = Point2<<T as Sub>::Output>;
 
     fn sub(self, rhs: Point2<T>) -> Point2<<T as Sub>::Output> {
@@ -32,7 +36,9 @@ impl<T> Sub for Point2<T> where T: Number, <T as Sub>::Output: Number {
     }
 }
 
-impl<T> Mul<T> for Point2<T> where T: Number, <T as Mul>::Output: Number {
+impl<T> Mul<T> for Point2<T>
+    where T: Number,
+          <T as Mul>::Output: Number {
     type Output = Point2<<T as Mul>::Output>;
 
     fn mul(self, rhs: T) -> Point2<<T as Mul>::Output> {
@@ -45,14 +51,14 @@ impl<T> Mul<T> for Point2<T> where T: Number, <T as Mul>::Output: Number {
 mod tests {
     use point::*;
 
-    const POINT_1: Point2<f32> = Point2{ x: 10.0, y: 20.0 };
-    const POINT_2: Point2<f32> = Point2{ x: 20.0, y: 20.0 };
+    const POINT_1: Point2<f32> = Point2 { x: 10.0, y: 20.0 };
+    const POINT_2: Point2<f32> = Point2 { x: 20.0, y: 20.0 };
 
     const SCALE: f32 = 2.0;
 
     #[test]
     fn test_equal() {
-        assert_eq!( POINT_1 == POINT_2, false );
+        assert_eq!(POINT_1 == POINT_2, false);
     }
 
     #[test]
