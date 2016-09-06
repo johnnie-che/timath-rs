@@ -3,7 +3,7 @@
 // Copyright (c) 2014-2016 stage team. All rights reserved.
 //
 
-use std::ops::{Add, Sub, Mul};
+use std::ops::{Add, Sub, Mul, Div};
 
 pub trait Number: Add<Output = Self> + Sub<Output = Self> + Mul<Output = Self> +
                   Copy + Clone { }
@@ -19,7 +19,8 @@ impl Number for u16 { }
 impl Number for u32 { }
 impl Number for u64 { }
 
-pub trait Float: Add<Output = Self> + Sub<Output = Self> + Mul<Output = Self> +
+pub trait Float: Add<Output = Self> + Sub<Output = Self> +
+                 Mul<Output = Self> + Div<Output = Self> +
                  Copy + Clone {
     fn sqrt(self) -> Self;
 }

@@ -46,12 +46,32 @@ impl<T> Mul<T> for Vector2<T>
     }
 }
 
-impl<T> Vector2<T>
+pub trait Vector<T>
+    where T: Float {
+
+    /// For effective vector comparison
+    fn magnitude2(self) -> T;
+
+    fn magnitude(self) -> T;
+
+    fn normal(self) -> Self;
+}
+
+impl<T> Vector<T> for Vector2<T>
     where T: Number,
           T: Float {
+
+    fn magnitude2(self) -> T {
+        self.x * self.x + self.y * self.y
+    }
+
     fn magnitude(self) -> T {
-        let sum = self.x * self.x + self.y * self.y;
-        Float::sqrt(sum)
+        Float::sqrt(self.magnitude2())
+    }
+
+    fn normal(self) -> Vector2<T> {
+        let m = self.magnitude();
+        Vector2 { x: self.x / m, y: self.y / m }
     }
 }
 
@@ -83,9 +103,11 @@ mod tests {
     }
 
     #[test]
-    fn test_magnitude() {
+    fn test_vector_trait() {
         let magnitude: f32 = (500.0_f32).sqrt();
+        let v = Vector2 { x: VECTOR_1.x / magnitude, y: VECTOR_1.y / magnitude };
 
         assert_eq!(magnitude, VECTOR_1.magnitude());
+        assert_eq!(v, VECTOR_1.normal());
     }
 }
